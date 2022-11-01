@@ -1,7 +1,8 @@
 //This class is all about LinkedList Problem.
 //Use Case 1 is to create a simple linked list of 56,30 and 70.
-
 //Use Case 2 is to create LinkedList by adding 30,56 to 70. Sequence is 56-->30-->70 but adding vice-versa.
+//Use Case 3 is to create a LinkedList by appending 30 and 70 to 56. Sequence 56-->30-->70.
+
 package com.linkedlist.problems;
 
 public class LinkedList {
@@ -26,14 +27,13 @@ public class LinkedList {
         if (head == null)
         {
             head = newNode;
-            tail = newNode;
         }
         else
         {
-            newNode.next = head;
-            head = newNode;
-            tail.next = null;
+            tail.next = newNode;
+            newNode.next = null;
         }
+        tail = newNode;
     }
 
     //Print LinkedList
@@ -50,9 +50,11 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         System.out.println("Welcome to LinkedList program");
-        list.addToLinkedList(70);
-        list.addToLinkedList(30);
-        list.addToLinkedList(56);
+        list.addToLinkedList(56);//56 is added first
+        list.addToLinkedList(30);//30 is added after 56
+        list.addToLinkedList(70);//70 is added after 30
         list.printLinkedList();
     }
-}
+
+    }
+
