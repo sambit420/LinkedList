@@ -3,6 +3,7 @@
 //Use Case 2 is to create LinkedList by adding 30,56 to 70. Sequence is 56-->30-->70 but adding vice-versa.
 //Use Case 3 is to create a LinkedList by appending 30 and 70 to 56. Sequence 56-->30-->70.
 //Use case 4 is to add 30 in between 56 and 70 in the linked list. Sequence is 56-->30-->70.
+//Use case 5 is to delete first element in the linked list. Given sequence is 56-->30-->70 and o/p will be 30-->70.
 package com.linkedlist.problems;
 
 public class LinkedList {
@@ -47,6 +48,27 @@ public class LinkedList {
         current.next = newNode;
         newNode.next = temp;
     }
+    //Delete the first element in the linked list
+    public void pop()
+    {
+        if (head == null)
+        {
+            System.out.println("List is empty");
+            return;
+        }
+        else
+        {
+            if (head != tail)
+            {
+                head = head.next;
+            }
+            else
+            {
+                head = tail = null;
+            }
+        }
+    }
+
 
     //Print LinkedList
     public void printLinkedList() {
@@ -65,6 +87,10 @@ public class LinkedList {
         list.printLinkedList();
         list.addAfterParticularNode(30);
         System.out.println();
+        list.printLinkedList();
+        list.pop();
+        System.out.println();
+        System.out.println("After removing first element from Linked List");
         list.printLinkedList();
     }
 
