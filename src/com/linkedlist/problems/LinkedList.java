@@ -7,6 +7,7 @@
 //Use Case 6 is to delete last element in the linked list. Given sequence is 56-->30-->70 and o/p will be 56-->30.
 //Use Case 7 is to search linked list to find node with value 30. Given sequence is 56-->30-->70.
 //Use Case 8 is to insert 40 after 30 to the linked list. Given sequence is 56-->30-->70 and o/p will be 56-->30-->40-->70.
+//Use Case 9 is to delete 40 from the linked list and show the size of linked list. Given sequence is 56-->30-->40-->70.
 
 package com.linkedlist.problems;
 
@@ -78,6 +79,92 @@ public class LinkedList {
         newNode.next = temp;
     }
 
+    //Delete the first element in the linked list
+    public void pop()
+    {
+        if (head == null)
+        {
+            System.out.println("List is empty");
+            return;
+        }
+        else
+        {
+            if (head != tail)
+            {
+                head = head.next;
+            }
+            else
+            {
+                head = tail = null;
+            }
+        }
+    }
+
+    //Delete last element in the linked list
+    public void popLast()
+    {
+        if (head == null)
+        {
+            System.out.println("List is empty");
+        }
+        else
+        {
+            if (head != tail)
+            {
+                Node current = head;
+                while (current.next.next != null)
+                {
+                    current = current.next;
+                }
+                tail = current;
+                tail.next = null;
+            }
+            else
+            {
+                head = tail = null;
+            }
+        }
+    }
+
+    //Delete node at given index.
+    public void popNodeAtAGivenIndex(int index) {
+
+        //case when we need to remove the head node
+        if (index == 1)
+        {
+            pop();
+        }
+        else if (index == getLinkedListSize())
+        {
+            //case when we need to remove the tail node
+            popLast();
+        }
+        else
+        {
+            int count = 1;
+            Node current = head;
+            while (current != null && count != index)
+            {
+                current = current.next;
+                count++;
+            }
+            current.next = current.next.next;
+        }
+    }
+
+    //Getting linked list size
+    public int getLinkedListSize()
+    {
+        Node current = head;
+        int count = 0;
+        while (current != null) {
+
+            current = current.next;
+            count++;
+        }
+        return count;
+    }
+
     //Print LinkedList
     public void printLinkedList()
     {
@@ -106,6 +193,9 @@ public class LinkedList {
         list.checkNode(30);
         list.addAtParticularPosition(40,position);//position represents the node position of 30.
         System.out.println("After adding 40 to the LinkedList");
+        list.printLinkedList();
+        list.popNodeAtAGivenIndex(position);
+        System.out.println("\nAfter removing 40 from linked list");
         list.printLinkedList();
 
     }
